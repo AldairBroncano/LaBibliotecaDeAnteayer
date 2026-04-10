@@ -103,7 +103,13 @@
 
       main {
         text-align: center;
+        flex-grow: 1; /* Muy importante si no usas Bootstrap */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         position: relative;
+        padding-bottom: 110px;
       }
 
       .portada {
@@ -127,11 +133,9 @@
       }
 
       footer {
-        text-align: center;
-        padding: 1rem;
         background-color: #2c3e50;
         color: white;
-        margin-top: 2rem;
+        padding: 1rem;
       }
 
       /* Mostrar menú al activar toggle */
@@ -158,7 +162,7 @@
       }
     </style>
   </head>
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <header>
       <div style="display: flex; align-items: center">
         <a href="/"
@@ -200,7 +204,9 @@
       </div>
     </nav>
 
-    <main>
+    <main
+      class="flex-grow-1 d-flex flex-column justify-content-center align-items-center"
+    >
       <img src="/img/portada1.jpg" alt="Imagen de portada" class="portada" />
       <div class="portada-texto">
         <span th:if="${session.rol == 'ADMIN'}">
@@ -213,12 +219,23 @@
         <span th:if="${session.rol == null}">
           Bienvenido visitante, inicia sesión o regístrate para comenzar.
         </span>
+
       </div>
     </main>
 
-    <footer>
-      &copy; <span th:text="${año}"></span> Mi Biblioteca Virtual. Todos los
-      derechos reservados.
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+      <div class="container">
+        <div class="mb-2">
+          <i class="fas fa-book-reader fa-2x"></i>
+        </div>
+        <p class="mb-1">
+          <strong>Mi Biblioteca Virtual</strong> – Descubre, aprende y crece con
+          cada libro 📚
+        </p>
+        <p class="mb-0">
+          &copy; <span th:text="${año}"></span> Todos los derechos reservados.
+        </p>
+      </div>
     </footer>
 
     <script>
